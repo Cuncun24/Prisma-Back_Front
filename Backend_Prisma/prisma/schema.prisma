@@ -1,0 +1,28 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Ave{
+  id            Int       @id @default(autoincrement())
+  especie       String
+  nombre        String
+  fecha_ingreso DateTime  @default(now()) 
+  estado        String
+  revisionres   RevisionVeterinaria[]
+}
+
+model RevisionVeterinaria{
+  id            Int       @id @default(autoincrement())
+  aveId         Int
+  fecha         DateTime  @default(now())
+  peso          Float
+  observaciones String
+  ave           Ave      @relation(fields: [aveId], references: [id])
+}
