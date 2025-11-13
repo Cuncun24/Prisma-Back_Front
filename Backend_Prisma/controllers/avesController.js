@@ -11,6 +11,10 @@ const avesController = {
         const nuevo = req.body;
         const nuevaave = await aveService.guardarAves(nuevo);
         res.json({mensaje: "nueva ave creada", ave: nuevaave})
+    },
+    async deleteAve(req, res) {
+        await aveService.eliminarAves(req.params.id);
+        res.json({ mensaje: "Ave eliminada" });
     }
 }
 

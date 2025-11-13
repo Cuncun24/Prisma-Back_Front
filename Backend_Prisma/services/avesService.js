@@ -11,7 +11,10 @@ const aveService = {
         return await prisma.ave.create({
       data: datos, // data es obligatorio
     });
-    }
+    },
+    async eliminarAves(id) {
+        return await prisma.ave.delete({where: {id:Number(id)}});
+    } 
 }
 
 module.exports = aveService; 
